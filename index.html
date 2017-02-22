@@ -77,11 +77,6 @@ function scan () {
     g = grid({ element: root, spacing: 12 }, hexes);
 }
 
-for(i = 0; i < hexes.length; i++){
-  hexes[i].onmouseover = function(){
-    this.className += " mouseOver";
-  };
-
 }
 
 scan();
