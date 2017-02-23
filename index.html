@@ -32,6 +32,7 @@
     <style>
       .hex { opacity: 0.5; }
       .hex:hover { opacity: 1.0; }
+      .button-small {padding: 0 1.5rem;}
     </style>
   </head>
   <body>
@@ -39,30 +40,87 @@
     <div class="container">
 
     <h1>Sticker Wall</h1>
-    <div id="grid" style="position: relative">
-      <img src="artworks/Angular/angular_complete.svg" class="hex">
-      <img src="artworks/C/c_complete.svg" class="hex">
-      <img src="artworks/CSS3/CSS3_complete.svg" class="hex">
-      <img src="artworks/Erlang/erlang_complete.svg" class="hex">
-      <img src="artworks/Git/Git-Logo-2Color_complete_3.svg" class="hex">
-      <img src="artworks/Go/go_complete.svg" class="hex">
-      <img src="artworks/Go/go_complete_2.svg" class="hex">
-      <img src="artworks/Go/go_complete_3.svg" class="hex">
-      <img src="artworks/Hadoop/Hadoop_complete.svg" class="hex">
-      <img src="artworks/HTML5/HTML5_complete.svg" class="hex">
-      <img src="artworks/Javascript/javascript_complete.svg" class="hex">
-      <img src="artworks/Mongo/mongodb.svg" class="hex">
-      <img src="artworks/Nodejs/nodejs.svg" class="hex">
-      <img src="artworks/PHP/php_complete.svg" class="hex">
-      <img src="artworks/Postgres/PostgreSQL_complete.svg" class="hex">
-      <img src="artworks/Python/python_complete.svg" class="hex">
-      <img src="artworks/React/react_complete.svg" class="hex">
-      <img src="artworks/Redis/Redis_Complete.svg" class="hex">
-      <img src="artworks/Ruby/ruby_complete.svg" class="hex">
-      <img src="artworks/Rust/rust_complete.svg" class="hex">
-      <img src="artworks/Scala/scala_complete.svg" class="hex">
-      <img src="artworks/SQLite/SQLite_Complete.svg" class="hex">
+
+    <h2> Pricing </h2>
+    
+    <p> <b> Flat 3€ shipping worlwide. </b> </p>
+
+    <div class="row">
+	<div class="column">
+	    <p><b>Up to 5</b> stickers <b>4.99€</b></p>
+	    <p><b>Up to 10</b> stickers <b>6.99€</b></p>
+	</div>
+	<div class="column">
+	    <p> <b>Up to 15</b> stickers <b>10.99€</b></p>
+	    <p> <b>Up to 20</b> stickers <b>12.99€</b></p>
+	</div>
     </div>
+
+    <div style="position: relative">
+	<div class="row">
+	<div id="grid"class="column column-80">
+	    <img src="artworks/Angular/angular_complete.svg" class="hex" id="angular">
+	    <img src="artworks/C/c_complete.svg" class="hex" id="c">
+	      <img src="artworks/CSS3/CSS3_complete.svg" class="hex" id="css3">
+	     <img src="artworks/Erlang/erlang_complete.svg" class="hex" id="erlang">
+	     <img src="artworks/Git/Git-Logo-2Color_complete_3.svg" class="hex" id="git">
+	     <img src="artworks/Go/go_complete.svg" class="hex" id="go1">
+      <img src="artworks/Go/go_complete_2.svg" class="hex" id="go2">
+      <img src="artworks/Go/go_complete_3.svg" class="hex" id="go3">
+      <img src="artworks/Hadoop/Hadoop_complete.svg" class="hex" id="hadoop">
+      <img src="artworks/HTML5/HTML5_complete.svg" class="hex" id="html5">
+      <img src="artworks/Javascript/javascript_complete.svg" class="hex" id="javascript">
+      <img src="artworks/Mongo/mongodb.svg" class="hex" id="mongodb">
+      <img src="artworks/Nodejs/nodejs.svg" class="hex" id="nodejs">
+      <img src="artworks/PHP/php_complete.svg" class="hex" id="php">
+      <img src="artworks/Postgres/PostgreSQL_complete.svg" class="hex" id="postgres">
+      <img src="artworks/Python/python_complete.svg" class="hex" id="python">
+      <img src="artworks/React/react_complete.svg" class="hex" id="react">
+      <img src="artworks/Redis/Redis_Complete.svg" class="hex" id="redis">
+      <img src="artworks/Ruby/ruby_complete.svg" class="hex" id="ruby">
+      <img src="artworks/Rust/rust_complete.svg" class="hex" id="rust">
+      <img src="artworks/Scala/scala_complete.svg" class="hex" id="scala">
+      <img src="artworks/SQLite/SQLite_Complete.svg" class="hex" id="sqlite">
+    </div>
+    
+    <div class="column">
+	
+	<div id="cart_parent" class="column" style="">
+	    <table id="cart" cellspacing="0">
+		<tr>
+		    <th>Sticker</th>
+		    <th></th>
+		    <th>Quantity</th>
+		    <th></th>
+		</tr>
+	    </table>
+	</div>
+
+	<form action="/your-server-side-code" method="POST">
+	    <script
+		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		data-key="pk_0EyWg8awdLf559GkOSywnFPyj2cwE"
+		data-amount="999"
+		data-name="Demo Site"
+		data-description="Widget"
+		data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+		data-locale="auto"
+		data-currency="eur"
+		data-shipping-address="true">
+	    </script>
+	</form>
+
+	<button> Checkout </button>
+	<button> 12.99€ </button>
+
+
+
+    </div>
+    </div>
+
+
+    </div>
+
   </div>
     <script>
 
@@ -226,5 +284,76 @@ function isharray (xs) {
 },{"defined":2,"point-in-polygon":3}]},{},[1]);
 
     </script>
+
+    <script>
+	var shippingCost = 300;
+	var priceBundle = [[5, 499], [10, 699], [15, 1099], [20, 1299]];
+	function getCost(elements) {
+	    for (i in priceBundle){
+		if (elements <= priceBundle[i][0])
+		    return priceBundle[i][1] + shippingCost; 
+	    }
+	}
+	var cart = {"total_item" : 0, "items" : {}};
+	var hexes = document.querySelectorAll('.hex');
+	var cart_table = document.getElementById("cart");
+	
+	function removeOne(elementID){
+	    if (elementID in cart.items){
+		cart.total_item--;
+		cart.items[elementID]--;
+		row = document.getElementById("cart_" + elementID);
+		if (cart.items[elementID] > 0) {
+		    row.cells[2].innerHTML = cart.items[elementID];
+		} else {
+		    cart_table.deleteRow(row.rowIndex);
+		}
+	    }
+	    console.log(getCost(cart.total_item));
+	};
+
+	function addOne(elementID) {
+	    cart.total_item++;
+	    if (elementID in cart.items){
+		cart.items[elementID]++;
+		row = document.getElementById("cart_" + elementID);
+		row.cells[2].innerHTML = cart.items[elementID];
+	    } else {
+		cart.items[elementID] = 1;
+		row = cart_table.insertRow();
+		row.id = "cart_" + elementID;
+		name_cell = row.insertCell(0);
+		plus_cell = row.insertCell(1);
+		qty_cell = row.insertCell(2);
+		minus_cell = row.insertCell(3);
+		name_cell.innerHTML = elementID;
+		qty_cell.innerHTML = cart.items[elementID];
+		qty_cell.style.textAlign = "center";
+		btn_plus = document.createElement("button");
+		btn_plus.className = "button-small";
+		btn_plus.innerHTML = "+";
+		btn_plus.addEventListener("click", function(){
+		    addOne(elementID);
+		});
+		btn_minus = document.createElement("button");
+		btn_minus.className = "button-small";
+		btn_minus.innerHTML = "-";
+		btn_minus.addEventListener("click", function() {
+		    removeOne(elementID);
+		});
+		plus_cell.appendChild(btn_plus);
+		minus_cell.appendChild(btn_minus);
+	    }
+	    console.log(getCost(cart.total_item));
+	}; 
+	
+	for (i = 0; i < hexes.length; i++){
+	    hexes[i].addEventListener("click", function(){
+		addOne(this.id);
+	    });
+	};
+
+    </script>
+
   </body>
 </html>
